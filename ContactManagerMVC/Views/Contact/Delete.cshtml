@@ -13,5 +13,7 @@
     <input type="hidden" asp-for="ContactId" />
 
     <button type="submit" class="btn btn-primary">Delete</button>
-    <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Cancel</a>
+    <a class="btn btn-primary me-2" asp-controller="Contact" asp-action="Detail" asp-route-id="@Model.ContactId" asp-route-slug="@Model.Slug">
+        Cancel
+    </a>
 </form>

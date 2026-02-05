@@ -23,7 +23,7 @@ namespace ContactManagerMVC.Models
         [Required(ErrorMessage = "User must have a Email.")]
         [EmailAddress(ErrorMessage = "Please enter a valid email address.")]
         public string Email { get; set; }
-        public string Organization { get; set; }
+        public string? Organization { get; set; }
         public DateTime DateAdded { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Please select a category")]

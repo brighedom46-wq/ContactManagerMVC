@@ -14,15 +14,36 @@ namespace ContactManagerMVC.Models
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Category>().HasData(
+                new Category { CategoryId = 1, Title = "Family" },
+                new Category { CategoryId = 2, Title = "Friend" },
+                new Category { CategoryId = 3, Title = "Work" }
+                );
+
             modelBuilder.Entity<Contact>()
                 .Property(c => c.DateAdded)
                 .HasDefaultValueSql("GETDATE()");
 
-            modelBuilder.Entity<Category>().HasData(
-                new Category { CategoryId = 101, Title = "Family" },
-                new Category { CategoryId = 102, Title = "Friend" },
-                new Category { CategoryId = 103, Title = "Work" }
-                );
+            modelBuilder.Entity<Contact>().HasData(
+                new Contact {
+                    ContactId = 1,
+                    FirstName = "Shuai", 
+                    LastName = "Gao",
+                    Phone = "587-876-0888",
+                    Email = "gaoshuai099@gmail.com",
+                    CategoryId = 1
+                },
+                new Contact
+                {
+                    ContactId = 2,
+                    FirstName = "Bright",
+                    LastName = "Edom",
+                    Phone = "111-222-3333",
+                    Email = "Bright.Edom@gmail.com",
+                    CategoryId = 2
+                }
+            );
+
         }
     }
 }

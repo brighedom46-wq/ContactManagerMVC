@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContactManagerMVC.Migrations
 {
     [DbContext(typeof(ContactContext))]
-    [Migration("20260204174625_Initial")]
-    partial class Initial
+    [Migration("20260205015807_ininial")]
+    partial class ininial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,17 +44,17 @@ namespace ContactManagerMVC.Migrations
                     b.HasData(
                         new
                         {
-                            CategoryId = 101,
+                            CategoryId = 1,
                             Title = "Family"
                         },
                         new
                         {
-                            CategoryId = 102,
+                            CategoryId = 2,
                             Title = "Friend"
                         },
                         new
                         {
-                            CategoryId = 103,
+                            CategoryId = 3,
                             Title = "Work"
                         });
                 });
@@ -88,7 +88,6 @@ namespace ContactManagerMVC.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Organization")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
@@ -100,6 +99,28 @@ namespace ContactManagerMVC.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Contacts");
+
+                    b.HasData(
+                        new
+                        {
+                            ContactId = 1,
+                            CategoryId = 1,
+                            DateAdded = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "gaoshuai099@gmail.com",
+                            FirstName = "Shuai",
+                            LastName = "Gao",
+                            Phone = "587-876-0888"
+                        },
+                        new
+                        {
+                            ContactId = 2,
+                            CategoryId = 2,
+                            DateAdded = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Bright.Edom@gmail.com",
+                            FirstName = "Bright",
+                            LastName = "Edom",
+                            Phone = "111-222-3333"
+                        });
                 });
 
             modelBuilder.Entity("ContactManagerMVC.Models.Contact", b =>

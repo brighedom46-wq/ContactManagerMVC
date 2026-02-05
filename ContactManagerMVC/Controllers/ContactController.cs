@@ -21,20 +21,30 @@ namespace ContactManagerMVC.Controllers
         }
 
         [HttpGet]
-        public IActionResult Detail(int id)
+        public IActionResult Detail(int id, string slug)
         {
+            var contact = context.Contacts.Find(id);
+
+            if (contact == null)
+            {
+                return View("NotFound");
+            }
+
             ViewBag.Action = "Detail";
             ViewBag.Categories = context.Categories.OrderBy(c => c.Title).ToList();
-            var contact = context.Contacts.Find(id);
             return View(contact);
         }
 
         [HttpGet]
         public IActionResult Edit(int id)
         {
+            var contact = context.Contacts.Find(id);
+            if (contact == null)
+            {
+                return View("NotFound");
+            }
             ViewBag.Action = "Edit";
             ViewBag.Categories = context.Categories.OrderBy(c => c.Title).ToList();
-            var contact = context.Contacts.Find(id);
             return View(contact);
         }
 

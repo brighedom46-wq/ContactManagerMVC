@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ContactManagerMVC.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class ininial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -36,7 +36,7 @@ namespace ContactManagerMVC.Migrations
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Organization = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Organization = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateAdded = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -56,9 +56,18 @@ namespace ContactManagerMVC.Migrations
                 columns: new[] { "CategoryId", "Title" },
                 values: new object[,]
                 {
-                    { 101, "Family" },
-                    { 102, "Friend" },
-                    { 103, "Work" }
+                    { 1, "Family" },
+                    { 2, "Friend" },
+                    { 3, "Work" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Contacts",
+                columns: new[] { "ContactId", "CategoryId", "Email", "FirstName", "LastName", "Organization", "Phone" },
+                values: new object[,]
+                {
+                    { 1, 1, "gaoshuai099@gmail.com", "Shuai", "Gao", null, "587-876-0888" },
+                    { 2, 2, "Bright.Edom@gmail.com", "Bright", "Edom", null, "111-222-3333" }
                 });
 
             migrationBuilder.CreateIndex(
