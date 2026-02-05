@@ -1,0 +1,49 @@
+﻿@model Contact
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    string title = ViewBag.Action + "Contact";
+    ViewBag.Title = title;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table table-horizontal-outline detail-table">
+        <tbody>
+            <tr>
+                <th>Name:</th>
+            <td>
+                @Model.FirstName @Model.LastName
+                </td>
+            </tr>
+            <tr>
+                <th>Phone:</th>
+            <td>@Model.Phone</td>
+            </tr>
+            <tr>
+                <th>Email:</th>
+            <td>@Model.Email</td>
+            </tr>
+            <tr>
+                <th>Category:</th>
+            <td>@Model.Category.Title</td>
+            </tr>
+            <tr>
+                <th>Organization:</th>
+                <td>@Model.Organization</td>
+            </tr>
+            <tr>
+                <th>Date added:</th>
+                <td>@Model.DateAdded</td>
+            </tr>
+            <tr>
+                <td>
+                    <a class="btn btn-primary me-2" asp-controller="Contact" asp-action="Edit" asp-route-id="@Model.ContactId" asp-route-slug="@Model.Slug">Edit</a>
+                    <a class="btn btn-primary me-2" asp-controller="Contact" asp-action="Delete" asp-route-id="@Model.ContactId" asp-route-slug="@Model.Slug">Delete</a>
+                    <a class="btn btn-primary me-2" asp-controller="Home" asp-action="Index">Home</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+

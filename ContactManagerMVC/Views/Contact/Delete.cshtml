@@ -1,0 +1,17 @@
+﻿@model Contact
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "Delete Student";
+}
+
+<h2>Confirm Delete</h2>
+<h3>@Model.FirstName @Model.LastName (@Model.ContactId)</h3>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="ContactId" />
+
+    <button type="submit" class="btn btn-primary">Delete</button>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Cancel</a>
+</form>
