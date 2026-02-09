@@ -1,9 +1,13 @@
-﻿namespace ContactManagerMVC.Models
+namespace ContactManagerMVC.Models
 {
+    // Represents a category that groups contacts
+    // Examples: Family, Friend, Work
     public class Category
     {
+        // Primary key for the Category table
         public int CategoryId { get; set; }
 
-        public string Title {  get; set; }
+        // Name/title of the category
+        public string Title { get; set; }
     }
 }
