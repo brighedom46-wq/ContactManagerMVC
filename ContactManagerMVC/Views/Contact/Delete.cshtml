@@ -1,19 +1,36 @@
-﻿@model Contact
+@model Contact
+
 @*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+    This view displays a confirmation page before deleting a contact.
+    It helps prevent accidental deletions.
 *@
 @{
-    ViewBag.Title = "Delete Student";
+    // Set the page title shown in the browser tab
+    ViewBag.Title = "Delete Contact";
 }
 
+<!-- Page heading -->
 <h2>Confirm Delete</h2>
+
+<!-- Display contact name and ID for confirmation -->
 <h3>@Model.FirstName @Model.LastName (@Model.ContactId)</h3>
 
+<!-- Form that submits a POST request to delete the contact -->
 <form asp-action="Delete" method="post">
+    <!-- Hidden field used to pass the ContactId to the controller -->
     <input type="hidden" asp-for="ContactId" />
 
-    <button type="submit" class="btn btn-primary">Delete</button>
-    <a class="btn btn-primary me-2" asp-controller="Contact" asp-action="Detail" asp-route-id="@Model.ContactId" asp-route-slug="@Model.Slug">
+    <!-- Button to confirm deletion -->
+    <button type="submit" class="btn btn-primary">
+        Delete
+    </button>
+
+    <!-- Cancel button that returns the user to the contact details page -->
+    <a class="btn btn-primary me-2"
+       asp-controller="Contact"
+       asp-action="Detail"
+       asp-route-id="@Model.ContactId"
+       asp-route-slug="@Model.Slug">
         Cancel
     </a>
 </form>
