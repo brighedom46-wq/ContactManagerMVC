@@ -1,13 +1,23 @@
-﻿@model List<Contact>
+@model List<Contact>
+
 @{
+    // Sets the page title displayed in the browser tab
     ViewData["Title"] = "Contact Manager MVC";
 }
 
+@* Optional page heading (currently commented out) *@
 @* <h2>Contact Manager</h2> *@
-<a class="NewContact" asp-controller="Contact" asp-action="Add">Add New Contact</a>
+
+<!-- Link to navigate to the Add Contact page -->
+<a class="NewContact" asp-controller="Contact" asp-action="Add">
+    Add New Contact
+</a>
+
+<!-- Table used to display the list of contacts -->
 <table class="table table-hover table-horizontal-only">
     <thead>
         <tr>
+            <!-- Table column headers -->
             <th>First Name</th>
             <th>Last Name</th>
             <th>Phone</th>
@@ -16,13 +26,37 @@
         </tr>
     </thead>
     <tbody>
+        <!-- Loop through each contact in the model -->
         @foreach (var contact in Model)
         {
             <tr>
-                <td><a asp-controller="Contact" asp-action="Detail" asp-route-id="@contact.ContactId" asp-route-slug="@contact.Slug">@contact.FirstName</a></td>
-                <td><a asp-controller="Contact" asp-action="Detail" asp-route-id="@contact.ContactId" asp-route-slug="@contact.Slug">@contact.LastName</a></td>
+                <!-- First Name links to the contact detail page -->
+                <td>
+                    <a asp-controller="Contact"
+                       asp-action="Detail"
+                       asp-route-id="@contact.ContactId"
+                       asp-route-slug="@contact.Slug">
+                        @contact.FirstName
+                    </a>
+                </td>
+
+                <!-- Last Name links to the contact detail page -->
+                <td>
+                    <a asp-controller="Contact"
+                       asp-action="Detail"
+                       asp-route-id="@contact.ContactId"
+                       asp-route-slug="@contact.Slug">
+                        @contact.LastName
+                    </a>
+                </td>
+
+                <!-- Display contact phone number -->
                 <td>@contact.Phone</td>
+
+                <!-- Display contact email address -->
                 <td>@contact.Email</td>
+
+                <!-- Display the contact category title -->
                 <td>@contact.Category.Title</td>
             </tr>
         }
