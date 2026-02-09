@@ -1,58 +1,87 @@
-﻿@model Contact
+@model Contact
+
 @*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+    This view is used for both adding and editing a contact.
+    The same form is reused based on the action passed from the controller.
 *@
 @{
-    string title = ViewBag.Action + "Student";
+    // Build the page title dynamically (Add Contact or Edit Contact)
+    string title = ViewBag.Action + " Contact";
     ViewBag.Title = title;
 }
 
+<!-- Display the page title -->
 <h2>@ViewBag.Title</h2>
 
+<!-- Form that submits contact data to the Edit action -->
 <form asp-action="Edit" method="post">
+
+    <!-- Displays all validation errors at the top of the form -->
     <div asp-validation-summary="All" class="text-danger"></div>
+
+    <!-- First Name input field -->
     <div class="form-group">
         <label asp-for="FirstName">First Name</label>
         <input asp-for="FirstName" class="form-control" />
     </div>
+
+    <!-- Last Name input field -->
     <div class="form-group">
-        <label asp-for="LastName">LastName</label>
+        <label asp-for="LastName">Last Name</label>
         <input asp-for="LastName" class="form-control" />
     </div>
+
+    <!-- Phone number input field -->
     <div class="form-group">
         <label asp-for="Phone">Phone</label>
         <input asp-for="Phone" class="form-control" />
     </div>
+
+    <!-- Email input field -->
     <div class="form-group">
         <label asp-for="Email">Email</label>
         <input asp-for="Email" class="form-control" />
     </div>
+
+    <!-- Category dropdown list -->
     <div class="form-group">
         <label asp-for="CategoryId">Category</label>
         <select asp-for="CategoryId" class="form-control">
-            <option value="">select a category</option>
+            <!-- Default option -->
+            <option value="">Select a category</option>
+
+            <!-- Populate dropdown with categories from ViewBag -->
             @foreach (Category c in ViewBag.Categories)
             {
                 <option value="@c.CategoryId">
                     @c.Title
                 </option>
             }
-
         </select>
     </div>
 
+    <!-- Organization input field (optional) -->
     <div class="form-group">
         <label asp-for="Organization">Organization</label>
         <input asp-for="Organization" class="form-control" />
     </div>
 
+    <!-- Hidden field used to track the ContactId for editing -->
     <input type="hidden" asp-for="ContactId" />
 
+    <!-- Form action buttons -->
     <div class="form-group mt-3">
+        <!-- Submit button (Add or Edit based on action) -->
         <button type="submit" class="btn btn-primary">
             @ViewBag.Action
         </button>
-        <a class="btn btn-primary me-2" asp-controller="Contact" asp-action="Detail" asp-route-id="@Model.ContactId" asp-route-slug="@Model.Slug">
+
+        <!-- Cancel button that returns to the contact detail page -->
+        <a class="btn btn-primary me-2"
+           asp-controller="Contact"
+           asp-action="Detail"
+           asp-route-id="@Model.ContactId"
+           asp-route-slug="@Model.Slug">
             Cancel
         </a>
     </div>
