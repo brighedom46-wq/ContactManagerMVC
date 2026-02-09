@@ -1,49 +1,86 @@
-﻿@model Contact
+@model Contact
+
 @*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+    This view displays the details of a single contact.
+    It is used to view contact information before editing or deleting.
 *@
 @{
-    string title = ViewBag.Action + "Contact";
+    // Build the page title dynamically using the current action
+    string title = ViewBag.Action + " Contact";
     ViewBag.Title = title;
 }
 
+<!-- Display the page title -->
 <h2>@ViewBag.Title</h2>
 
+<!-- Table layout for displaying contact details -->
 <table class="table table-horizontal-outline detail-table">
-        <tbody>
-            <tr>
-                <th>Name:</th>
+    <tbody>
+        <tr>
+            <!-- Display the contact's full name -->
+            <th>Name:</th>
             <td>
                 @Model.FirstName @Model.LastName
-                </td>
-            </tr>
-            <tr>
-                <th>Phone:</th>
-            <td>@Model.Phone</td>
-            </tr>
-            <tr>
-                <th>Email:</th>
-            <td>@Model.Email</td>
-            </tr>
-            <tr>
-                <th>Category:</th>
-            <td>@Model.Category.Title</td>
-            </tr>
-            <tr>
-                <th>Organization:</th>
-                <td>@Model.Organization</td>
-            </tr>
-            <tr>
-                <th>Date added:</th>
-                <td>@Model.DateAdded</td>
-            </tr>
-            <tr>
-                <td>
-                    <a class="btn btn-primary me-2" asp-controller="Contact" asp-action="Edit" asp-route-id="@Model.ContactId" asp-route-slug="@Model.Slug">Edit</a>
-                    <a class="btn btn-primary me-2" asp-controller="Contact" asp-action="Delete" asp-route-id="@Model.ContactId" asp-route-slug="@Model.Slug">Delete</a>
-                    <a class="btn btn-primary me-2" asp-controller="Home" asp-action="Index">Home</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+            </td>
+        </tr>
 
+        <tr>
+            <!-- Display the contact's phone number -->
+            <th>Phone:</th>
+            <td>@Model.Phone</td>
+        </tr>
+
+        <tr>
+            <!-- Display the contact's email address -->
+            <th>Email:</th>
+            <td>@Model.Email</td>
+        </tr>
+
+        <tr>
+            <!-- Display the contact's category -->
+            <th>Category:</th>
+            <td>@Model.Category.Title</td>
+        </tr>
+
+        <tr>
+            <!-- Display the organization (optional field) -->
+            <th>Organization:</th>
+            <td>@Model.Organization</td>
+        </tr>
+
+        <tr>
+            <!-- Display the date the contact was added -->
+            <th>Date added:</th>
+            <td>@Model.DateAdded</td>
+        </tr>
+
+        <tr>
+            <td>
+                <!-- Button to edit the current contact -->
+                <a class="btn btn-primary me-2"
+                   asp-controller="Contact"
+                   asp-action="Edit"
+                   asp-route-id="@Model.ContactId"
+                   asp-route-slug="@Model.Slug">
+                    Edit
+                </a>
+
+                <!-- Button to delete the current contact -->
+                <a class="btn btn-primary me-2"
+                   asp-controller="Contact"
+                   asp-action="Delete"
+                   asp-route-id="@Model.ContactId"
+                   asp-route-slug="@Model.Slug">
+                    Delete
+                </a>
+
+                <!-- Button to return to the Home page -->
+                <a class="btn btn-primary me-2"
+                   asp-controller="Home"
+                   asp-action="Index">
+                    Home
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
